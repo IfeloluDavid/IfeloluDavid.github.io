@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+     <!-- http://wiki.whatwg.org/wiki/MetaExtensions -->
+	 <!-- http://google.com/support/webmasters/bin/topic.py?topic=15260
+	       guidelines for optimizing your site -->
+     <meta name="author" content="Ifelolu David"/> 
+	 <meta name="description" content="Web Application Development"/>
+     <meta name="keywords" content="      /">
+	 <meta charset="utf-8"/> 
+	 <meta http-equiv="refresh" content="5"/><!--refreshes the webpage every 5 seconds by specifying the refresh header and a value of 5 -->
+
+	 
+     <title>The Stuxnet Worm</title>
+	 <link rel="stylesheet" type="text/css" href="index.css"></link>
+	 <link rel="shortcut icon" href="Untitled.ico" type="image/x-icon" />
+  </head>
+  
+  <body>
+          <aside id="logo">
+  	  		<img src="logo.png" width="300px" height="200px">
+  	  	  </aside>
+  	<header>
+     <h1> The Stuxnet Worm </h1>
+     <h2> Paul Mueller and Babak Yadegari </h2>
+	</header>
+	 <p/>
+
+	 <br>
+	 <br>
+	 <br>
+	 <br>
+
+
+
+     <aside id="asideNav">
+	 <nav>
+	 	<h1 id="nav-h1">Contents</h1>
+	 	<ul>
+	 		<li><a href>Overview of Stuxnet</a></li>
+            <li><a href="#Operation">Operation of Stuxnet</a></li>
+                <ul>
+                	 <li><a href>How Stuxnet Spreads</a></li>
+                	 <li><a href>Auto-updating</a></li>
+                	 <li><a href> Command and Control servers</a></li>
+                	 <li><a href> Infection</a></li>
+                     <li><a href>User-Mode</a></li>
+                     <li><a href>Kernel-Mode</a></li>
+                     <li><a href>Attack phase</a></li>
+                     <li><a href>Concealment of attack activities</a></li>
+                     <li><a href>Conclusion</a></li>
+                     <li><a href>Overview of References</a></li>
+                     <li><a href>References</a></li>
+
+                </ul>
+            <li><a href>Conclusion</a></li>
+            <li><a href>Overview of References</a></li>
+            <li><a href>References</a></li>
+	 	</ul>
+     </nav> 
+     </aside>
+
+
+	 <div class="content">
+	 	<article id="Overview">
+	 		<h3>Overview of Stuxnet</h3>
+	 		Stuxnet is a sophisticated worm designed to target only specific Siemens SCADA (industrial control)
+systems.
+It makes use of an unprecedented four 0-day vulnerabilities- attacks that make use of a security
+vulnerability in an application, before the vulnerability is known to the application’s developers.
+It also uses rootkits - advanced techniques to hide itself from users and anti-malware software -
+on both Windows and the control computers it targets. It employs two stolen digital certificates to
+sign its drivers, and its creators needed a large amount of knowledge of its targeted systems. See
+Figure 1 for an overview.
+It was discovered in June 2010, but an early version appeared a year earlier. It is widely
+suspected of targeting Iran’s uranium enrichment program, since it is rather specific about what it
+attacks, and this matches the Iranian Natanz enrichment plant.
+One indication that Stuxnet targeted Iran’s nuclear program is that it only targets facilities that
+have a certain specific physical layout. The layout of the centrifuges in a facility such as Natanz is
+called a cascade, and describes how the centrifuges are piped together; this is done in stages, and
+the centrifuges within one stage are piped in parallel.
+Iranian President Ahmadinejad visited Natanz on April 8, 2008, and photos of the visit were
+published on his website as a photo-op. In one of the photos (Figure 2) is what appears to be a
+monitor showing the structure of a so-called IR-1 (for Iran-1 centrifuge) cascade. This structure,
+giving the number of centrifuges in each stage, matches the Stuxnet code exactly.
+Iran’s nuclear program launched in the 1950s with the Shah of Iran obtaining non weaponsrelated assistance from the United States’ “Atoms for Peace” program. The program’s inception
+was delayed because of the 1979 revolution and after that because of the Iran-Iraq war. However,
+Iran’s new leaders were interested in continuing the nuclear program and started getting help from
+other countries to further it.
+In 2002, an Iranian opposition group publicly revealed two undeclared nuclear facilities, resulting
+in Iran admitting to having constructed facilities for fuel enrichment and heavy water production,
+ostensibly for use in research reactors. Iran suspended its plans in 2003 but resumed them in 2006
+and insists that it has the right to establish its own uranium enrichment program.
+Iran maintains that its nuclear program is entirely peaceful. However, the IAEA (International
+Atomic Energy Agency) insists that Iran does not comply with the safeguard program it has agreed
+to, resulting in various sanctions against Iran by the UN Security Council [9]. It is widely believed
+that Iran is in fact working toward producing nuclear weapons.Assuming that Stuxnet was intended to damage this suspected nuclear weapons program, it
+was somewhat effective: it may have destroyed 1,000 centrifuges at Natanz, about 11% of the total
+number installed at the time. Also, Iran doesn’t have an unlimited number of centrifuges, and
+the ones they do have tend to fail relatively often, so such a decrease is significant, albeit not immediately fatal to the program. In addition, Stuxnet decreased production of enriched uranium
+and likely sowed chaos within the Iranian nuclear program.
+Israel and the U.S. are the leading suspects as Stuxnet’s creators. Neither are friends of Iran’s
+current leadership (to put it mildly) and both, especially Israel, fear a nuclear-armed Iran.
+Israel has said that cyberwarfare is an important part of its defense strategy, and has a military
+intelligence unit dedicated to it, according to Wikipedia. Furthermore, Israeli officials are said to
+have responded with “wide smiles” when they were asked in 2010 whether Israel created Stuxnet [5].
+Furthermore, a video celebrating the operational successes of the head of the Israeli Defence
+Forces’ Lieutenant General Gabi Ashkenazi, shown at his retirement party, showed Stuxnet as being
+among them, according to the Daily Telegraph [15].
+Before Stuxnet had been discovered, according to Wikipedia, “John Bumgarner, a former intelligence officer and member of the United States Cyber-Consequences Unit (US-CCU)” had published
+an article describing a Stuxnet-like attack on centrifuges, and claimed that such attacks against
+nations enriching uranium in violation of international treaties are legitimate. This, combined with
+some US officials’ not-quite-denials of involvement, raise suspicions that the US participated in
+Stuxnet’s creation, despite official denials.
+	 	</article>
+        <br>
+
+
+
+	 	<article id="Operation">
+	 		<h3>Operation of Stuxnet</h3>
+	 		One thing that differentiates Stuxnet from more run-of-the-mill malicious software is that its creators have incorporated lots of capabilities into it. These range from exploiting multiple zero-day
+vulnerabilities, modifying system libraries, attacking Step7 installations (Siemens’ SCADA control
+software) and running an RPC server, to installing signed drivers on Windows operating systems.
+Figure 3 shows an overview of multiple components which are present in the malware. This section
+describes these components and their various purposes.
+Stuxnet spreads via several vectors, no doubt selected to ultimately allow it to infect the PLCs
+it targets. It is capable of auto-updating, so that it can update old versions of itself to newer
+versions available on a local network. It communicates with command and control servers to
+provide information on its spread to its creators and also provide another way for it to be updated.
+It conceals its presence and the source of its destructive effects from plant personnel, who may be
+totally unaware that it is the cause of unexplained problems.
+
+	 	</article>
+	 </div>
+  <br>
+    <form>
+	     Name: <input type="text" name="name" accesskey="n"/>
+		 <p/>
+		 Password: <input type="password" name="password" accesskey="p"/>
+		 <p/>
+		 Comments:<textarea spellcheck="true">  This is some mispelled text</textarea>
+		 <br/>
+		 <input type="submit" value="Log In" accesskey="s"/>
+	     
+	 </form>
+
+	 <p id="fruits">I also like bananas, mangoes, cherries, apricots, plums, peaches and grapes.
+ </p> 
+  
+
+  <footer id="mainFooter">
+ &#169;2020, Ifelolu David. 
+  <address>
+ Questions and comments? <a href="mailto:adam@myboringblog.com">Email me</a>
+ </address> 
+</footer>
+  
+  </body>
+</html>

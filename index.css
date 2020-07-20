@@ -1,0 +1,61 @@
+
+/*go to http://www.blueprintcss.org/
+http://lesscss.org/ ------- enhancing css with javascript
+*/
+
+
+body{
+background-color: gray;
+}
+
+h1 { 
+	display: block; 
+	font-size: 3em; 
+    font-weight: bold; 
+    text-align: center;
+}
+
+h2 { 
+	display: block; 
+	font-size: 1.5em;  
+    font-weight: bold; 
+    
+} 
+h3{
+    color: black ;
+}
+
+header{
+	text-align: center;
+}
+
+
+blockquote{
+	margin-left: 3%;
+}
+.content{
+
+	
+	color: white;
+	padding-left: 1em;
+}
+
+#asideNav{
+	/* position: fixed; */
+	width: 30%;
+	background:white;
+	float: left;
+	border: thick solid black;
+	margin-right: 10px;
+}
+#logo{
+	width: 18%;
+	float: left;
+}
+
+
+article{
+	margin-left: 33%;
+	margin-right: 5%;
+	font-size: 1.67em;
+}
