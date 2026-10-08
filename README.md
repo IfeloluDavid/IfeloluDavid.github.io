@@ -8,7 +8,7 @@ All the text lives in **`assets/js/data.js`**. Edit that one file to add jobs, c
 
 - An empty list (`[]`) hides its section and its menu link.
 - Entries marked `TODO` are templates to fill in from LinkedIn.
-- **Photo:** add `assets/img/profile.jpg` and set `photo: "assets/img/profile.jpg"`.
+- **Photos:** `assets/img/profile.jpg` (hero) and `assets/img/candid.jpg` (About). Replace the files to update them.
 - **CV:** add a PDF to `assets/` and set `resume` to show a "Download CV" button.
 - **Email:** set `email` to show an "Email me" button.
 
