@@ -22,6 +22,12 @@ window.SITE = {
   resume: "", // e.g. "assets/Ifelolu-David-CV.pdf" — adds a "Download CV" button
   email: "ifelolud@gmail.com",
 
+  // Shown as a badge in the hero.
+  recognition: {
+    title: "AWS Community Builder",
+    image: "assets/img/badges/aws-community-builder.png",
+  },
+
   links: {
     linkedin: "https://www.linkedin.com/in/ifelolu-david/",
     medium: "https://medium.com/@ifeloludavid",
@@ -33,14 +39,14 @@ window.SITE = {
   about: [
     "I'm a certified AWS Solutions Architect with a track record of designing secure, scalable, high-performance cloud and hybrid infrastructure. Today I lead the architecture of end-to-end AI and data analytics solutions at Digitspots Solutions, turning customer problems across multiple sectors into production-ready systems.",
     "My work spans the full stack of modern cloud: generative and agentic AI, event-driven and serverless design, ETL/ELT pipelines and data warehousing, and DevOps automation. I apply security-by-design throughout — least-privilege identity, network isolation, encryption, monitoring and logging — so that what I build is safe to scale.",
-    "I hold a B.Sc. in Computer Science from Redeemer's University (4.60/5.00) and have earned four AWS certifications, two at Professional level, in under two years. I learn in public: every build becomes a write-up on Medium or a hands-on tutorial on my YouTube channel, Cloud with Dave, so the knowledge compounds for me and for the engineers who learn from it.",
+    "I hold a B.Sc. in Computer Science from Redeemer's University (4.60/5.00) and have earned four AWS certifications, two at Professional level, in under two years. I'm an AWS Community Builder, and I learn in public: every build becomes a write-up on Medium or a hands-on tutorial on my YouTube channel, Cloud with Dave, so the knowledge compounds for me and for the engineers who learn from it.",
   ],
 
   highlights: [
     { value: "4×", label: "AWS Certified, incl. 2 Professional" },
+    { value: "AWS", label: "Community Builder" },
     { value: "2", label: "Client systems taken to production on AWS in 2026" },
     { value: "75%", label: "Faster decision-making delivered through analytics" },
-    { value: "10+", label: "Technical articles & video tutorials" },
   ],
 
   // ── Experience ─────────────────────────────────────────────
@@ -76,6 +82,7 @@ window.SITE = {
   // ── Certifications (newest first) ──────────────────────────
   certifications: [
     {
+      badge: "assets/img/badges/genai-developer-pro.png",
       name: "AWS Certified Generative AI Developer – Professional",
       level: "Professional",
       issuer: "Amazon Web Services",
@@ -84,6 +91,7 @@ window.SITE = {
       credentialUrl: "https://www.credly.com/badges/cbe89b1f-1959-47a1-8d14-7328c1ea882c/public_url",
     },
     {
+      badge: "assets/img/badges/ai-practitioner.png",
       name: "AWS Certified AI Practitioner",
       level: "Foundational",
       issuer: "Amazon Web Services",
@@ -92,6 +100,7 @@ window.SITE = {
       credentialUrl: "https://www.credly.com/badges/e6b7559c-b459-4977-a026-9a0fc37f3fbf/public_url",
     },
     {
+      badge: "assets/img/badges/devops-pro.png",
       name: "AWS Certified DevOps Engineer – Professional",
       level: "Professional",
       issuer: "Amazon Web Services",
@@ -100,6 +109,7 @@ window.SITE = {
       credentialUrl: "https://www.credly.com/badges/2878ae68-ac8d-4f0f-90fc-13a684ad6dce/public_url",
     },
     {
+      badge: "assets/img/badges/solutions-architect-associate.png",
       name: "AWS Certified Solutions Architect – Associate",
       level: "Associate",
       issuer: "Amazon Web Services",
@@ -113,19 +123,23 @@ window.SITE = {
   skills: [
     {
       group: "AI & Machine Learning",
-      items: [
+      // Thumbnails live in assets/img/videos/<id>.jpg
+    items: [
         "Generative AI on AWS",
+        "Amazon Bedrock",
         "Agentic AI",
         "Foundation model integration",
         "Prompt engineering",
         "Machine learning",
         "Responsible AI",
         "Amazon Rekognition",
+        "Amazon Q & PartyRock",
       ],
     },
     {
       group: "Cloud Architecture & DevOps",
-      items: [
+      // Thumbnails live in assets/img/videos/<id>.jpg
+    items: [
         "AWS Well-Architected",
         "Hybrid & multi-AZ design",
         "Serverless & microservices",
@@ -135,13 +149,16 @@ window.SITE = {
         "Amazon ECS on Fargate",
         "Terraform & CloudFormation",
         "GitHub Actions CI/CD",
+        "CodePipeline, CodeBuild & Beanstalk",
+        "AWS SAM",
         "Amazon RDS (PostgreSQL, SQL Server)",
         ".NET modernisation with AWS Transform",
       ],
     },
     {
       group: "Data Engineering & Analytics",
-      items: [
+      // Thumbnails live in assets/img/videos/<id>.jpg
+    items: [
         "Python",
         "SQL",
         "ETL / ELT pipeline design",
@@ -151,6 +168,7 @@ window.SITE = {
         "AWS Glue & Athena",
         "Amazon Redshift",
         "Kinesis & DynamoDB",
+        "EventBridge, SES & SNS",
         "Amazon OpenSearch",
         "Power BI (DAX)",
         "Tableau & geospatial maps",
@@ -158,7 +176,8 @@ window.SITE = {
     },
     {
       group: "Cloud Security",
-      items: [
+      // Thumbnails live in assets/img/videos/<id>.jpg
+    items: [
         "Security by design",
         "IAM & least privilege",
         "OIDC federation, zero static keys",
@@ -173,6 +192,10 @@ window.SITE = {
 
   // ── Leadership & community ─────────────────────────────────
   leadership: [
+    {
+      title: "AWS Community Builder",
+      body: "Selected by AWS for the Community Builders programme, which recognises technical practitioners who share knowledge and help others learn AWS through content, talks and community work.",
+    },
     {
       title: "Architecture lead for AI & data solutions",
       body: "At Digitspots I own end-to-end solution architecture, guiding technical decisions across business development, solution architecture and DevOps teams, and shaping proposals for customers in multiple sectors.",
@@ -282,6 +305,21 @@ window.SITE = {
     { title: "Building a Real-Time Data Pipeline with AWS Kinesis, Lambda, and DynamoDB", date: "Medium", url: "https://ifeloludavid.medium.com/building-a-real-time-data-pipeline-with-aws-kinesis-lambda-and-dynamodb-my-journey-%EF%B8%8F-972773f2d777" },
     { title: "Human Creativity and AI: The Infinity of Imagination, Knowledge and Experience", date: "LinkedIn", url: "https://www.linkedin.com/pulse/human-creativity-ai-infinity-imagination-knowledge-ifelolu-oladimeji" },
   ],
+
+  // ── Videos (YouTube: Cloud with Dave) ───────────────────────
+  videos: {
+    channel: "https://www.youtube.com/@ifeloludavid",
+    summary: "26 hands-on tutorials, including a 7-part AWS SAM course",
+    // Thumbnails live in assets/img/videos/<id>.jpg
+    items: [
+      { id: "qShPG8j0n-I", title: "Generative AI on AWS (Part 1): Building a Real-World Knowledge Base" },
+      { id: "nzLSHQfzkOE", title: "How I Built an AI Assistant for a Company Using Amazon Q" },
+      { id: "m2Gmosxmz4U", title: "End-to-End DevOps Pipeline on AWS: Node.js, CodeBuild, CodePipeline, Beanstalk" },
+      { id: "f8ckMuXgzco", title: "AWS SAM course, Module 1: Creating Your First SAM App" },
+      { id: "pENlhT8g1YM", title: "Real-Time Email Automation on AWS: DynamoDB Streams + Lambda + SES" },
+      { id: "vg0d99oCNlc", title: "How to Pass AWS SAA on Your First Try, Even as a Beginner" },
+    ],
+  },
 
   // ── Education ──────────────────────────────────────────────
   education: [

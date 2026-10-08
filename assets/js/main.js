@@ -67,6 +67,13 @@
     return html;
   }
   $("heroCta").innerHTML = ctas();
+
+  // ── Recognition badge ──────────────────────────────────────
+  if (S.recognition && S.recognition.title) {
+    $("recognition").innerHTML =
+      (S.recognition.image ? '<img src="' + esc(S.recognition.image) + '" alt="" width="44" height="44" />' : "") +
+      "<span>" + esc(S.recognition.title) + "</span>";
+  } else $("recognition").remove();
   $("contactCta").innerHTML = ctas();
 
   // ── Social links ───────────────────────────────────────────
@@ -129,7 +136,10 @@
       .map(function (c) {
         return (
           '<li class="card card--cert">' +
-          '<div class="card__head"><span class="badge" aria-hidden="true">✓</span>' +
+          '<div class="card__head">' +
+          (c.badge
+            ? '<img class="cert-badge" src="' + esc(c.badge) + '" alt="" width="72" height="72" loading="lazy" />'
+            : '<span class="badge" aria-hidden="true">✓</span>') +
           (c.level ? '<span class="level level--' + esc(c.level.toLowerCase()) + '">' + esc(c.level) + "</span>" : "") +
           "</div>" +
           "<h3>" + esc(c.name) + "</h3>" +
@@ -250,6 +260,25 @@
         more.textContent = expand ? "Show fewer" : "Show all " + S.articles.length + " articles";
       });
   } else hide("writing");
+
+  // ── Videos ─────────────────────────────────────────────────
+  var V = S.videos;
+  if (V && filled(V.items)) {
+    $("videoList").innerHTML = V.items
+      .map(function (v) {
+        return (
+          '<li><a class="video" href="https://www.youtube.com/watch?v=' + encodeURIComponent(v.id) +
+          '" target="_blank" rel="noopener">' +
+          '<span class="video__thumb"><img src="assets/img/videos/' + encodeURIComponent(v.id) +
+          '.jpg" alt="" width="480" height="270" loading="lazy" /><span class="video__play" aria-hidden="true"></span></span>' +
+          '<span class="video__title">' + esc(v.title) + "</span></a></li>"
+        );
+      })
+      .join("");
+    if (V.summary) $("videoSummary").textContent = V.summary + ".";
+    if (V.channel) $("videoChannel").href = V.channel;
+    else $("videoChannel").remove();
+  } else hide("videos");
 
   // ── Education ──────────────────────────────────────────────
   if (filled(S.education)) {
