@@ -242,6 +242,16 @@
     }
   });
 
+  // "Back to top" and the brand link scroll to the very top of the page.
+  document.querySelectorAll('a[href="#top"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+    });
+  });
+
   // Highlight the section currently in view.
   if ("IntersectionObserver" in window) {
     var anchors = navLinks.querySelectorAll("a");
