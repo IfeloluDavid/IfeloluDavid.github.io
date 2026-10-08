@@ -26,20 +26,21 @@ window.SITE = {
     linkedin: "https://www.linkedin.com/in/ifelolu-david/",
     medium: "https://medium.com/@ifeloludavid",
     github: "https://github.com/IfeloluDavid",
+    youtube: "https://www.youtube.com/@ifeloludavid",
     instagram: "https://www.instagram.com/i.daveed/",
   },
 
   about: [
     "I'm a certified AWS Solutions Architect with a track record of designing secure, scalable, high-performance cloud and hybrid infrastructure. Today I lead the architecture of end-to-end AI and data analytics solutions at Digitspots Solutions, turning customer problems across multiple sectors into production-ready systems.",
     "My work spans the full stack of modern cloud: generative and agentic AI, event-driven and serverless design, ETL/ELT pipelines and data warehousing, and DevOps automation. I apply security-by-design throughout — least-privilege identity, network isolation, encryption, monitoring and logging — so that what I build is safe to scale.",
-    "I hold a B.Sc. in Computer Science from Redeemer's University (4.60/5.00) and have earned four AWS certifications, two at Professional level, in under two years. I learn in public: every build becomes a write-up on Medium, so the knowledge compounds for me and for the engineers who read it.",
+    "I hold a B.Sc. in Computer Science from Redeemer's University (4.60/5.00) and have earned four AWS certifications, two at Professional level, in under two years. I learn in public: every build becomes a write-up on Medium or a hands-on tutorial on my YouTube channel, Cloud with Dave, so the knowledge compounds for me and for the engineers who learn from it.",
   ],
 
   highlights: [
     { value: "4×", label: "AWS Certified, incl. 2 Professional" },
+    { value: "2", label: "Client systems taken to production on AWS in 2026" },
     { value: "75%", label: "Faster decision-making delivered through analytics" },
-    { value: "4.60/5", label: "B.Sc. Computer Science" },
-    { value: "3+ yrs", label: "Building data & cloud solutions" },
+    { value: "10+", label: "Technical articles & video tutorials" },
   ],
 
   // ── Experience ─────────────────────────────────────────────
@@ -53,6 +54,8 @@ window.SITE = {
         "Lead the architecture of end-to-end AI and data analytics solutions, integrating cloud and off-cloud components to meet business, operational and regulatory requirements.",
         "Partner with Business Development and Solution Architecture teams to conceptualise, design and build industry-focused AI solutions for key customer use cases across multiple sectors.",
         "Helping establish and structure a new Software Development Unit with the DevOps team, focused on AI-driven applications for small businesses and startups.",
+        "Designed and shipped a production order and delivery platform for a gas distribution business on ECS Fargate, fully defined in Terraform and deployed through GitHub Actions with OIDC (no long-lived AWS keys).",
+        "Modernised a university's academic data layer from on-prem SQL Server and .NET Framework to Amazon RDS and .NET 8 on ECS Fargate, encrypted with KMS and accessed only through Secrets Manager.",
         "Drive solution ideation, prototyping and deployment of intelligent systems, ensuring scalability, performance and seamless integration into customer environments.",
       ],
     },
@@ -129,8 +132,11 @@ window.SITE = {
         "Event-driven architecture",
         "Amazon EKS & ECR",
         "EC2 & Auto Scaling",
-        "CloudFormation (IaC)",
-        "CI/CD automation",
+        "Amazon ECS on Fargate",
+        "Terraform & CloudFormation",
+        "GitHub Actions CI/CD",
+        "Amazon RDS (PostgreSQL, SQL Server)",
+        ".NET modernisation with AWS Transform",
       ],
     },
     {
@@ -142,6 +148,8 @@ window.SITE = {
         "Data warehousing",
         "Data modelling",
         "Amazon EMR & big data",
+        "AWS Glue & Athena",
+        "Amazon Redshift",
         "Kinesis & DynamoDB",
         "Amazon OpenSearch",
         "Power BI (DAX)",
@@ -153,6 +161,8 @@ window.SITE = {
       items: [
         "Security by design",
         "IAM & least privilege",
+        "OIDC federation, zero static keys",
+        "AWS KMS & Secrets Manager",
         "Network security",
         "Encryption",
         "Monitoring & logging",
@@ -176,63 +186,101 @@ window.SITE = {
       body: "At Redemption City PMD I lead the organisation's data initiatives, giving leadership dashboards and recommendations that cut decision turnaround by 75%.",
     },
     {
-      title: "Teaching through writing",
-      body: "I document what I build on Medium and LinkedIn, including a tutorial republished by AWS Tip, so other engineers can learn faster.",
+      title: "Educator: Cloud with Dave",
+      body: "I run Cloud with Dave, a YouTube channel of hands-on AWS tutorials, and write in-depth guides on Medium (several republished by AWS Tip) to help cloud engineers and data professionals build practical skills.",
     },
   ],
 
   // ── Projects ───────────────────────────────────────────────
   projects: [
     {
+      featured: true,
+      title: "Order & delivery platform for a gas distributor",
+      context: "Client engagement · DevOps · 2026",
+      summary:
+        "A production system that staff use daily to take orders, track gas cylinder stock and dispatch drivers. Every push to main is tested, migrated and deployed automatically.",
+      points: [
+        "ALB → ECS Fargate → RDS PostgreSQL across two AZs, with chained security groups so only the load balancer is public.",
+        "All infrastructure in Terraform; GitHub Actions authenticates with OIDC, so no AWS access keys exist anywhere.",
+        "Secrets generated by Terraform into Secrets Manager; CloudWatch dashboard and four alarms routed through SNS.",
+        "Diagnosed five real production failures from CloudTrail, container logs and ECR errors, then hardened the pipeline to migrate before deploying.",
+      ],
+      tags: ["Terraform", "ECS Fargate", "RDS", "GitHub Actions", "OIDC"],
+      url: "https://ifeloludavid.medium.com/how-i-took-a-gas-distribution-business-live-on-aws-fargate-8c3841d0b5ea",
+    },
+    {
+      featured: true,
+      title: "University data platform modernisation",
+      context: "Client engagement · Microsoft Workloads · 2026",
+      summary:
+        "Moved a university's academic records off an exposed on-prem SQL Server and onto a secure AWS data foundation, alongside a .NET Framework 4.8 → .NET 8 upgrade.",
+      points: [
+        "Amazon RDS for SQL Server, encrypted at rest with KMS and reachable only from the application's security group.",
+        "Credentials resolved at runtime from Secrets Manager and scoped by IAM to a single ECS task; TLS enforced in transit.",
+        "Used AWS Transform for the EF6 → EF Core 8 code conversion, and made the data-migration strategy call that no tool can make.",
+        "Set explicit log retention and documented the remaining trade-offs openly, such as single-AZ for this phase.",
+      ],
+      tags: ["RDS SQL Server", "KMS", "Secrets Manager", ".NET 8", "AWS Transform"],
+      url: "https://ifeloludavid.medium.com/from-legacy-sql-server-to-a-modern-data-foundation-on-aws-76d69b763126",
+    },
+    {
+      title: "Serverless ETL pipeline",
+      summary:
+        "Raw data lands in S3, AWS Glue catalogues and transforms it, and Athena queries the results, with production practices for monitoring and cost.",
+      tags: ["S3", "Glue", "Athena", "Lambda"],
+      url: "https://awstip.com/building-modern-etl-pipelines-on-aws-a-practical-guide-for-cloud-engineers-9f47c2d6396d",
+    },
+    {
       title: "Real-time data pipeline",
       summary:
-        "A fully automated, serverless pipeline that ingests streaming events with Kinesis Data Streams, processes them in Lambda and persists results to DynamoDB.",
-      tags: ["Kinesis", "Lambda", "DynamoDB", "Serverless"],
+        "Streaming events ingested with Kinesis Data Streams, processed in Lambda and persisted to DynamoDB, fully automated and serverless.",
+      tags: ["Kinesis", "Lambda", "DynamoDB"],
       url: "https://ifeloludavid.medium.com/building-a-real-time-data-pipeline-with-aws-kinesis-lambda-and-dynamodb-my-journey-%EF%B8%8F-972773f2d777",
+    },
+    {
+      title: "Finance tracker",
+      summary:
+        "Users log expenses, set monthly budgets, see spending charts and get alerts when they overspend. Serverless on AWS with a CI/CD pipeline.",
+      tags: ["Serverless", "DynamoDB", "CI/CD"],
+      url: "https://awstip.com/managing-personal-finances-can-be-chaotic-but-building-a-solution-for-it-thats-the-fun-part-e305b7b0f9dc",
+    },
+    {
+      title: "Dave's Drive cloud storage",
+      summary:
+        "A scalable, secure file storage system with uploads, retrieval and access management built from managed AWS services.",
+      tags: ["S3", "Lambda", "API Gateway", "Cognito"],
+      url: "https://ifeloludavid.medium.com/daves-drive-aws-powered-cloud-storage-system-d4ca25647aca",
     },
     {
       title: "Serverless face detection",
       summary:
-        "An S3 upload triggers Lambda, which calls Amazon Rekognition to detect faces and emails the results through SNS, with no servers to manage.",
+        "An S3 upload triggers Lambda, which calls Amazon Rekognition to detect faces and emails the results through SNS.",
       tags: ["Rekognition", "Lambda", "S3", "SNS"],
       url: "https://awstip.com/face-detection-with-amazon-rekognition-and-aws-lambda-43bf6b61842b",
     },
     {
-      title: "Highly available web tier",
+      title: "Weather info fetcher",
       summary:
-        "A fault-tolerant web application using an Auto Scaling group behind an Application Load Balancer, spread across multiple Availability Zones.",
-      tags: ["EC2 Auto Scaling", "ALB", "Multi-AZ"],
-      url: "https://ifeloludavid.medium.com/building-highly-available-web-applications-with-aws-simulearn-173b13efba45",
+        "Enter a city and get live weather in moments: a cloud-native app that orchestrates API Gateway and Lambda with a public weather API.",
+      tags: ["API Gateway", "Lambda", "S3"],
+      url: "https://awstip.com/building-a-serverless-weather-info-fetcher-with-aws-8fe8772672aa",
     },
   ],
 
   // ── Writing ────────────────────────────────────────────────
   articles: [
-    {
-      title: "Amazon OpenSearch Service: The Engine Behind Search, Logs, and Real-Time Dashboards",
-      date: "Medium · Dec 2025",
-      url: "https://ifeloludavid.medium.com/amazon-opensearch-service-the-engine-behind-search-logs-and-real-time-dashboards-4d8cbb4b0c54",
-    },
-    {
-      title: "Building Highly Available Web Applications with AWS SimuLearn",
-      date: "Medium · Nov 2024",
-      url: "https://ifeloludavid.medium.com/building-highly-available-web-applications-with-aws-simulearn-173b13efba45",
-    },
-    {
-      title: "Building a Real-Time Data Pipeline with AWS Kinesis, Lambda, and DynamoDB: My Journey",
-      date: "Medium",
-      url: "https://ifeloludavid.medium.com/building-a-real-time-data-pipeline-with-aws-kinesis-lambda-and-dynamodb-my-journey-%EF%B8%8F-972773f2d777",
-    },
-    {
-      title: "Face Detection with Amazon Rekognition and AWS Lambda",
-      date: "AWS Tip",
-      url: "https://awstip.com/face-detection-with-amazon-rekognition-and-aws-lambda-43bf6b61842b",
-    },
-    {
-      title: "Human Creativity and AI: The Infinity of Imagination, Knowledge and Experience",
-      date: "LinkedIn",
-      url: "https://www.linkedin.com/pulse/human-creativity-ai-infinity-imagination-knowledge-ifelolu-oladimeji",
-    },
+    { title: "From Legacy SQL Server to a Modern Data Foundation on AWS", date: "Sep 2026", url: "https://ifeloludavid.medium.com/from-legacy-sql-server-to-a-modern-data-foundation-on-aws-76d69b763126" },
+    { title: "How I Took a Gas Distribution Business Live on AWS Fargate", date: "Aug 2026", url: "https://ifeloludavid.medium.com/how-i-took-a-gas-distribution-business-live-on-aws-fargate-8c3841d0b5ea" },
+    { title: "Amazon OpenSearch Service: The Engine Behind Search, Logs, and Real-Time Dashboards", date: "Dec 2025", url: "https://ifeloludavid.medium.com/amazon-opensearch-service-the-engine-behind-search-logs-and-real-time-dashboards-4d8cbb4b0c54" },
+    { title: "Building Modern ETL Pipelines on AWS: A Practical Guide for Cloud Engineers", date: "Dec 2025 · AWS Tip", url: "https://awstip.com/building-modern-etl-pipelines-on-aws-a-practical-guide-for-cloud-engineers-9f47c2d6396d" },
+    { title: "I Built a Finance Tracker with AWS: CI/CD, Serverless, DynamoDB & More", date: "Apr 2025 · AWS Tip", url: "https://awstip.com/managing-personal-finances-can-be-chaotic-but-building-a-solution-for-it-thats-the-fun-part-e305b7b0f9dc" },
+    { title: "Dave's Drive: AWS-Powered Cloud Storage System", date: "Mar 2025", url: "https://ifeloludavid.medium.com/daves-drive-aws-powered-cloud-storage-system-d4ca25647aca" },
+    { title: "Face Detection with Amazon Rekognition and AWS Lambda", date: "Jan 2025 · AWS Tip", url: "https://awstip.com/face-detection-with-amazon-rekognition-and-aws-lambda-43bf6b61842b" },
+    { title: "Building a Serverless Weather Info Fetcher with AWS", date: "Jan 2025 · AWS Tip", url: "https://awstip.com/building-a-serverless-weather-info-fetcher-with-aws-8fe8772672aa" },
+    { title: "Building Highly Available Web Applications with AWS SimuLearn", date: "Nov 2024", url: "https://ifeloludavid.medium.com/building-highly-available-web-applications-with-aws-simulearn-173b13efba45" },
+    { title: "Unlocking Big Data Potential with Amazon Redshift", date: "Oct 2024", url: "https://ifeloludavid.medium.com/unlocking-big-data-potential-with-amazon-redshift-capabilities-and-real-world-use-cases-5b0f5d284de8" },
+    { title: "Building a Real-Time Data Pipeline with AWS Kinesis, Lambda, and DynamoDB", date: "Medium", url: "https://ifeloludavid.medium.com/building-a-real-time-data-pipeline-with-aws-kinesis-lambda-and-dynamodb-my-journey-%EF%B8%8F-972773f2d777" },
+    { title: "Human Creativity and AI: The Infinity of Imagination, Knowledge and Experience", date: "LinkedIn", url: "https://www.linkedin.com/pulse/human-creativity-ai-infinity-imagination-knowledge-ifelolu-oladimeji" },
   ],
 
   // ── Education ──────────────────────────────────────────────
