@@ -46,7 +46,7 @@
   // ── Portrait ───────────────────────────────────────────────
   var portrait = $("portrait");
   if (S.photo) {
-    portrait.innerHTML = '<img src="' + esc(S.photo) + '" alt="" width="320" height="320" />';
+    portrait.innerHTML = '<img src="' + esc(S.photo) + '" alt="Portrait of ' + esc(S.name) + '" width="320" height="320" />';
   } else {
     portrait.innerHTML = '<span class="monogram">' + esc(S.initials || "") + "</span>";
   }
@@ -94,7 +94,12 @@
 
   // ── About ──────────────────────────────────────────────────
   if (filled(S.about)) {
-    $("aboutBody").innerHTML = S.about.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
+    $("aboutBody").innerHTML =
+      S.about.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("") +
+      (S.aboutPhoto
+        ? '<figure class="about__photo"><img src="' + esc(S.aboutPhoto) + '" alt="' + esc(S.shortName || S.name) +
+          ' at work" width="720" height="747" loading="lazy" /></figure>'
+        : "");
   } else hide("about");
 
   // ── Experience ─────────────────────────────────────────────
@@ -122,9 +127,12 @@
       .map(function (c) {
         return (
           '<li class="card card--cert">' +
-          '<span class="badge" aria-hidden="true">✓</span>' +
+          '<div class="card__head"><span class="badge" aria-hidden="true">✓</span>' +
+          (c.level ? '<span class="level level--' + esc(c.level.toLowerCase()) + '">' + esc(c.level) + "</span>" : "") +
+          "</div>" +
           "<h3>" + esc(c.name) + "</h3>" +
           '<p class="card__meta">' + [c.issuer, c.date].filter(Boolean).map(esc).join(" · ") + "</p>" +
+          (c.summary ? '<p class="card__summary">' + esc(c.summary) + "</p>" : "") +
           (c.credentialUrl
             ? '<a class="card__link" href="' + esc(c.credentialUrl) + '" target="_blank" rel="noopener">Verify credential →</a>'
             : "") +
@@ -198,7 +206,8 @@
       .map(function (e) {
         return (
           '<li class="stack__item"><h3>' + esc(e.degree) + "</h3><p>" +
-          [e.school, e.period].filter(Boolean).map(esc).join(" · ") + "</p></li>"
+          [e.school, e.period].filter(Boolean).map(esc).join(" · ") + "</p>" +
+          (e.detail ? '<p class="stack__detail">' + esc(e.detail) + "</p>" : "") + "</li>"
         );
       })
       .join("");

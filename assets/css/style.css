@@ -662,3 +662,51 @@ p {
     transition: none;
   }
 }
+
+/* Certification extras */
+.card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.level {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.level--professional {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #e7b75f;
+}
+.card__summary {
+  font-size: 0.93rem;
+}
+
+/* About photo & education detail */
+.about__photo {
+  margin: 32px 0 0;
+  max-width: 360px;
+}
+.about__photo img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.stack__detail {
+  margin-top: 8px;
+  font-size: 0.93rem;
+}
+.cards--2 {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+}
+.stats span {
+  display: block;
+  line-height: 1.45;
+}
