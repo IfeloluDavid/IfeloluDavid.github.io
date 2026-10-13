@@ -33,7 +33,9 @@
     instagram:
       '<path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM12 2c-2.7 0-3.05 0-4.12.06C4.6 2.2 2.2 4.6 2.06 7.88 2 8.95 2 9.3 2 12s0 3.05.06 4.12c.15 3.28 2.54 5.67 5.82 5.82C8.95 22 9.3 22 12 22s3.05 0 4.12-.06c3.28-.15 5.67-2.54 5.82-5.82C22 15.05 22 14.7 22 12s0-3.05-.06-4.12C21.8 4.6 19.4 2.2 16.12 2.06 15.05 2 14.7 2 12 2zm0 1.8c2.67 0 2.98 0 4.04.06 2.42.11 3.99 1.68 4.1 4.1.05 1.06.06 1.37.06 4.04s0 2.98-.06 4.04c-.11 2.42-1.68 3.99-4.1 4.1-1.06.05-1.37.06-4.04.06s-2.98 0-4.04-.06c-2.42-.11-3.99-1.68-4.1-4.1C3.81 14.98 3.8 14.67 3.8 12s0-2.98.06-4.04c.11-2.42 1.68-3.99 4.1-4.1C9.02 3.81 9.33 3.8 12 3.8z"/>',
   };
-  var LABELS = { linkedin: "LinkedIn", medium: "Medium", github: "GitHub", instagram: "Instagram" };
+  ICONS.youtube =
+    '<path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.3 3.6z"/>';
+  var LABELS = { linkedin: "LinkedIn", medium: "Medium", github: "GitHub", youtube: "YouTube", instagram: "Instagram" };
 
   // ── Simple text bindings ───────────────────────────────────
   document.querySelectorAll("[data-bind]").forEach(function (el) {
@@ -65,6 +67,13 @@
     return html;
   }
   $("heroCta").innerHTML = ctas();
+
+  // ── Recognition badge ──────────────────────────────────────
+  if (S.recognition && S.recognition.title) {
+    $("recognition").innerHTML =
+      (S.recognition.image ? '<img src="' + esc(S.recognition.image) + '" alt="" width="44" height="44" />' : "") +
+      "<span>" + esc(S.recognition.title) + "</span>";
+  } else $("recognition").remove();
   $("contactCta").innerHTML = ctas();
 
   // ── Social links ───────────────────────────────────────────
@@ -127,7 +136,10 @@
       .map(function (c) {
         return (
           '<li class="card card--cert">' +
-          '<div class="card__head"><span class="badge" aria-hidden="true">✓</span>' +
+          '<div class="card__head">' +
+          (c.badge
+            ? '<img class="cert-badge" src="' + esc(c.badge) + '" alt="" width="72" height="72" loading="lazy" />'
+            : '<span class="badge" aria-hidden="true">✓</span>') +
           (c.level ? '<span class="level level--' + esc(c.level.toLowerCase()) + '">' + esc(c.level) + "</span>" : "") +
           "</div>" +
           "<h3>" + esc(c.name) + "</h3>" +
@@ -141,6 +153,26 @@
       })
       .join("");
   } else hide("certifications");
+
+  // ── Learning journey ───────────────────────────────────────
+  if (filled(S.learning)) {
+    $("learningList").innerHTML = S.learning
+      .map(function (y) {
+        return (
+          '<li class="journey__year"><h3>' + esc(y.year) + '</h3><ul class="journey__items">' +
+          y.items
+            .map(function (i) {
+              var name = i.url
+                ? '<a href="' + esc(i.url) + '" target="_blank" rel="noopener">' + esc(i.name) + "</a>"
+                : esc(i.name);
+              return "<li><span>" + name + "</span>" + (i.issuer ? "<small>" + esc(i.issuer) + "</small>" : "") + "</li>";
+            })
+            .join("") +
+          "</ul></li>"
+        );
+      })
+      .join("");
+  } else hide("learning");
 
   // ── Skills ─────────────────────────────────────────────────
   if (filled(S.skills)) {
@@ -165,40 +197,108 @@
   } else hide("leadership");
 
   // ── Projects ───────────────────────────────────────────────
+  function chips(tags) {
+    return filled(tags)
+      ? '<ul class="chips chips--sm">' + tags.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>"
+      : "";
+  }
   if (filled(S.projects)) {
-    $("projectList").innerHTML = S.projects
-      .map(function (p) {
-        return (
-          '<li class="card">' +
-          "<h3>" + esc(p.title) + "</h3>" +
-          "<p>" + esc(p.summary) + "</p>" +
-          (filled(p.tags)
-            ? '<ul class="chips chips--sm">' + p.tags.map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("") + "</ul>"
-            : "") +
-          (p.url ? '<a class="card__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">Read the build →</a>' : "") +
-          "</li>"
-        );
-      })
-      .join("");
+    var featured = S.projects.filter(function (p) { return p.featured; });
+    var others = S.projects.filter(function (p) { return !p.featured; });
+
+    if (featured.length) {
+      $("featuredList").innerHTML = featured
+        .map(function (p) {
+          return (
+            '<li class="case">' +
+            '<div class="case__intro">' +
+            (p.context ? '<p class="case__context">' + esc(p.context) + "</p>" : "") +
+            "<h3>" + esc(p.title) + "</h3>" +
+            "<p>" + esc(p.summary) + "</p>" +
+            chips(p.tags) +
+            (p.url ? '<a class="card__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">Read the case study →</a>' : "") +
+            "</div>" +
+            (filled(p.points)
+              ? '<ul class="case__points">' + p.points.map(function (pt) { return "<li>" + esc(pt) + "</li>"; }).join("") + "</ul>"
+              : "") +
+            "</li>"
+          );
+        })
+        .join("");
+    } else $("featuredList").remove();
+
+    if (others.length) {
+      $("projectList").innerHTML = others
+        .map(function (p) {
+          return (
+            '<li class="card">' +
+            "<h3>" + esc(p.title) + "</h3>" +
+            "<p>" + esc(p.summary) + "</p>" +
+            chips(p.tags) +
+            (p.url ? '<a class="card__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.linkLabel || "Read the build") + " →</a>" : "") +
+            "</li>"
+          );
+        })
+        .join("");
+    } else {
+      $("projectList").remove();
+      $("moreProjectsTitle").remove();
+    }
   } else hide("projects");
 
   // ── Articles ───────────────────────────────────────────────
+  var ARTICLES_SHOWN = 6;
   if (filled(S.articles)) {
-    $("articleList").innerHTML =
-      S.articles
-        .map(function (a) {
-          return (
-            '<li><a href="' + esc(a.url) + '" target="_blank" rel="noopener">' +
-            "<span>" + esc(a.title) + "</span>" +
-            (a.date ? "<small>" + esc(a.date) + "</small>" : "") +
-            "</a></li>"
-          );
-        })
-        .join("") +
-      (S.links && S.links.medium
-        ? '<li class="articles__more"><a href="' + esc(S.links.medium) + '" target="_blank" rel="noopener"><span>All articles on Medium →</span></a></li>'
-        : "");
+    var list = $("articleList");
+    list.innerHTML = S.articles
+      .map(function (a, i) {
+        return (
+          "<li" + (i >= ARTICLES_SHOWN ? " hidden" : "") + '><a href="' + esc(a.url) + '" target="_blank" rel="noopener">' +
+          "<span>" + esc(a.title) + "</span>" +
+          (a.date ? "<small>" + esc(a.date) + "</small>" : "") +
+          "</a></li>"
+        );
+      })
+      .join("");
+
+    var actions = '<div class="articles__actions">';
+    if (S.articles.length > ARTICLES_SHOWN)
+      actions += '<button type="button" class="btn btn--ghost" id="moreArticles" aria-expanded="false">Show all ' +
+        S.articles.length + " articles</button>";
+    if (S.links && S.links.medium)
+      actions += '<a class="card__link" href="' + esc(S.links.medium) + '" target="_blank" rel="noopener">Follow on Medium →</a>';
+    list.insertAdjacentHTML("afterend", actions + "</div>");
+
+    var more = $("moreArticles");
+    if (more)
+      more.addEventListener("click", function () {
+        var expand = more.getAttribute("aria-expanded") !== "true";
+        list.querySelectorAll("li").forEach(function (li, i) {
+          if (i >= ARTICLES_SHOWN) li.hidden = !expand;
+        });
+        more.setAttribute("aria-expanded", String(expand));
+        more.textContent = expand ? "Show fewer" : "Show all " + S.articles.length + " articles";
+      });
   } else hide("writing");
+
+  // ── Videos ─────────────────────────────────────────────────
+  var V = S.videos;
+  if (V && filled(V.items)) {
+    $("videoList").innerHTML = V.items
+      .map(function (v) {
+        return (
+          '<li><a class="video" href="https://www.youtube.com/watch?v=' + encodeURIComponent(v.id) +
+          '" target="_blank" rel="noopener">' +
+          '<span class="video__thumb"><img src="assets/img/videos/' + encodeURIComponent(v.id) +
+          '.jpg" alt="" width="480" height="270" loading="lazy" /><span class="video__play" aria-hidden="true"></span></span>' +
+          '<span class="video__title">' + esc(v.title) + "</span></a></li>"
+        );
+      })
+      .join("");
+    if (V.summary) $("videoSummary").textContent = V.summary + ".";
+    if (V.channel) $("videoChannel").href = V.channel;
+    else $("videoChannel").remove();
+  } else hide("videos");
 
   // ── Education ──────────────────────────────────────────────
   if (filled(S.education)) {
@@ -240,6 +340,16 @@
       navLinks.classList.remove("is-open");
       toggle.setAttribute("aria-expanded", "false");
     }
+  });
+
+  // "Back to top" and the brand link scroll to the very top of the page.
+  document.querySelectorAll('a[href="#top"]').forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+      if (history.replaceState) history.replaceState(null, "", location.pathname + location.search);
+    });
   });
 
   // Highlight the section currently in view.

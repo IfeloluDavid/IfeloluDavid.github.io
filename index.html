@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Ifelolu David Oladimeji — AI & Data Solutions Architect</title>
+    <title>Ifelolu David Oladimeji — AI & ML Engineer, AWS Solutions Architect</title>
     <meta
       name="description"
-      content="Ifelolu David Oladimeji is a 4× AWS Certified AI &amp; Data Analytics Solutions Architect who designs secure, scalable AI, data and cloud platforms."
+      content="Ifelolu David Oladimeji is an AI &amp; Machine Learning Engineer, 4× AWS Certified Solutions Architect and AWS Community Builder who designs secure, scalable AI, data and cloud platforms."
     />
     <meta name="author" content="Ifelolu David" />
     <meta property="og:type" content="profile" />
-    <meta property="og:title" content="Ifelolu David Oladimeji — AI & Data Solutions Architect" />
+    <meta property="og:title" content="Ifelolu David Oladimeji — AI & ML Engineer, AWS Solutions Architect" />
     <meta
       property="og:description"
       content="4× AWS Certified. Generative AI, data platforms and secure cloud architecture."
@@ -27,10 +27,10 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
-  <body>
+  <body id="top">
     <a class="skip" href="#main">Skip to content</a>
 
-    <header class="nav" id="top">
+    <header class="nav">
       <div class="wrap nav__inner">
         <a class="nav__brand" href="#top" data-bind="initials">ID</a>
         <nav aria-label="Primary">
@@ -46,12 +46,13 @@
       <section class="hero">
         <div class="wrap hero__inner">
           <div class="hero__text">
-            <p class="eyebrow" data-bind="role">AI &amp; Data Analytics Solutions Architect</p>
+            <p class="eyebrow" data-bind="role">AI &amp; Machine Learning Engineer · AWS Solutions Architect</p>
             <h1 data-bind="name">Ifelolu David Oladimeji</h1>
             <p class="hero__tagline" data-bind="tagline"></p>
             <p class="hero__location" data-bind="location"></p>
             <div class="hero__cta" id="heroCta"></div>
             <ul class="socials" id="socials" aria-label="Profiles"></ul>
+            <p class="recognition" id="recognition"></p>
           </div>
           <div class="hero__portrait" id="portrait" aria-hidden="true"></div>
         </div>
@@ -82,6 +83,16 @@
         </div>
       </section>
 
+      <section class="section" id="learning" data-nav="Learning">
+        <div class="wrap grid-2">
+          <div>
+            <h2 class="section__title">Learning journey</h2>
+            <p class="section__lede">Seven years of continuous learning, from cybersecurity and computer science foundations in 2019 to Professional-level AWS certifications in 2026.</p>
+          </div>
+          <ol class="journey" id="learningList"></ol>
+        </div>
+      </section>
+
       <section class="section" id="skills" data-nav="Skills">
         <div class="wrap">
           <h2 class="section__title">Skills</h2>
@@ -96,9 +107,12 @@
         </div>
       </section>
 
-      <section class="section" id="projects" data-nav="Projects">
+      <section class="section" id="projects" data-nav="Work">
         <div class="wrap">
-          <h2 class="section__title">Selected projects</h2>
+          <h2 class="section__title">Selected work</h2>
+          <p class="section__lede">Production systems I've delivered for clients, followed by hands-on builds I've documented publicly.</p>
+          <ul class="featured" id="featuredList"></ul>
+          <h3 class="subhead" id="moreProjectsTitle">More builds</h3>
           <ul class="cards cards--3" id="projectList"></ul>
         </div>
       </section>
@@ -107,9 +121,20 @@
         <div class="wrap grid-2">
           <div>
             <h2 class="section__title">Writing</h2>
-            <p class="section__lede">I document what I build and learn, so it compounds — for me and for readers.</p>
+            <p class="section__lede">I document what I build and learn on Medium and on my YouTube channel, Cloud with Dave, so it compounds for me and for readers.</p>
           </div>
-          <ul class="articles" id="articleList"></ul>
+          <div>
+            <ul class="articles" id="articleList"></ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="videos" data-nav="Videos">
+        <div class="wrap">
+          <h2 class="section__title">Cloud with Dave</h2>
+          <p class="section__lede">I teach AWS on YouTube: <span id="videoSummary"></span></p>
+          <ul class="videos" id="videoList"></ul>
+          <a class="btn btn--ghost videos__more" id="videoChannel" href="#" target="_blank" rel="noopener">Watch all on YouTube →</a>
         </div>
       </section>
 
