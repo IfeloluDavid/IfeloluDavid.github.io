@@ -154,6 +154,26 @@
       .join("");
   } else hide("certifications");
 
+  // ── Learning journey ───────────────────────────────────────
+  if (filled(S.learning)) {
+    $("learningList").innerHTML = S.learning
+      .map(function (y) {
+        return (
+          '<li class="journey__year"><h3>' + esc(y.year) + '</h3><ul class="journey__items">' +
+          y.items
+            .map(function (i) {
+              var name = i.url
+                ? '<a href="' + esc(i.url) + '" target="_blank" rel="noopener">' + esc(i.name) + "</a>"
+                : esc(i.name);
+              return "<li><span>" + name + "</span>" + (i.issuer ? "<small>" + esc(i.issuer) + "</small>" : "") + "</li>";
+            })
+            .join("") +
+          "</ul></li>"
+        );
+      })
+      .join("");
+  } else hide("learning");
+
   // ── Skills ─────────────────────────────────────────────────
   if (filled(S.skills)) {
     $("skillsList").innerHTML = S.skills
@@ -215,7 +235,7 @@
             "<h3>" + esc(p.title) + "</h3>" +
             "<p>" + esc(p.summary) + "</p>" +
             chips(p.tags) +
-            (p.url ? '<a class="card__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">Read the build →</a>' : "") +
+            (p.url ? '<a class="card__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">' + esc(p.linkLabel || "Read the build") + " →</a>" : "") +
             "</li>"
           );
         })

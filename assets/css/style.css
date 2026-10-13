@@ -884,3 +884,52 @@ p {
 .videos__more {
   margin-top: 32px;
 }
+
+/* Learning journey */
+.journey__year {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-top: 1px solid var(--line);
+}
+.journey__year:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.journey__year h3 {
+  font: 600 1.35rem var(--serif);
+  color: var(--accent);
+}
+.journey__items li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 4px 0;
+}
+.journey__items li + li {
+  margin-top: 6px;
+}
+.journey__items a {
+  text-decoration-color: var(--line);
+  text-underline-offset: 3px;
+}
+.journey__items a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+.journey__items small {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+@media (max-width: 600px) {
+  .journey__year {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .journey__items li {
+    flex-direction: column;
+    gap: 0;
+  }
+}
