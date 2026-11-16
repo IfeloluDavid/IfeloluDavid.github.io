@@ -13,7 +13,7 @@ window.SITE = {
   name: "Ifelolu David Oladimeji",
   shortName: "Ifelolu David",
   initials: "ID",
-  role: "AI & Machine Learning Engineer · AWS Solutions Architect",
+  role: "Forward Deployed Engineer · AWS Solutions Architect",
   tagline:
     "I architect secure, scalable AI and data platforms on AWS — and turn them into measurable business outcomes.",
   location: "Lagos, Nigeria · Open to global & remote roles",
@@ -37,13 +37,13 @@ window.SITE = {
   },
 
   about: [
-    "I'm an AI & Machine Learning Engineer and certified AWS Solutions Architect with a track record of designing secure, scalable, high-performance cloud and hybrid infrastructure. At Digitspot Solutions I first led the architecture of end-to-end AI and data analytics solutions, and I now build and ship AI and cloud systems that turn customer problems into production-ready platforms.",
+    "I'm a Forward Deployed Engineer and certified AWS Solutions Architect with a track record of designing secure, scalable, high-performance cloud and hybrid infrastructure. At Digitspot Solutions I first led the architecture of end-to-end AI and data analytics solutions, built and shipped AI and cloud systems as an AI & Machine Learning Engineer, and now work as a Forward Deployed Engineer, turning customer problems into production-ready platforms.",
     "My work spans the full stack of modern cloud: generative and agentic AI, event-driven and serverless design, ETL/ELT pipelines and data warehousing, and DevOps automation. I apply security-by-design throughout — least-privilege identity, network isolation, encryption, monitoring and logging — so that what I build is safe to scale.",
-    "I'm a First Class Computer Science graduate of Redeemer's University (4.60/5.00) and have earned four AWS certifications, two at Professional level, in under two years, building on a foundation in cybersecurity and data analytics that goes back to 2019. I'm an AWS Community Builder and a conference speaker, and I learn in public: every build becomes a write-up on Medium or a hands-on tutorial on my YouTube channel, Cloud with Dave, so the knowledge compounds for me and for the engineers who learn from it.",
+    "I'm a First Class Computer Science graduate of Redeemer's University (4.60/5.00) and have earned five AWS certifications in two years, including two at Professional level and the Security Specialty, building on a foundation in cybersecurity and data analytics that goes back to 2019. I'm an AWS Community Builder and a conference speaker, and I learn in public: every build becomes a write-up on Medium or a hands-on tutorial on my YouTube channel, Cloud with Dave, so the knowledge compounds for me and for the engineers who learn from it.",
   ],
 
   highlights: [
-    { value: "4×", label: "AWS Certified, incl. 2 Professional" },
+    { value: "5×", label: "AWS Certified, incl. 2 Professional & Security Specialty" },
     { value: "AWS", label: "Community Builder" },
     { value: "2", label: "Client systems taken to production on AWS in 2026" },
     { value: "75%", label: "Faster decision-making delivered through analytics" },
@@ -52,9 +52,18 @@ window.SITE = {
   // ── Experience ─────────────────────────────────────────────
   experience: [
     {
+      role: "Forward Deployed Engineer",
+      company: "Digitspot Solutions Ltd",
+      period: "Nov 2026 — Present",
+      location: "Lagos, Nigeria",
+      points: [
+        "Work directly with customers to deploy, integrate and adapt AI and cloud solutions in their own environments.",
+      ],
+    },
+    {
       role: "AI & Machine Learning Engineer",
       company: "Digitspot Solutions Ltd",
-      period: "Jan 2026 — Present",
+      period: "Jan 2026 — Nov 2026",
       location: "Lagos, Nigeria",
       points: [
         "Design and build AI, machine learning and cloud solutions on AWS for customer use cases, from prototype to production.",
@@ -101,6 +110,15 @@ window.SITE = {
   // ── Certifications (newest first) ──────────────────────────
   certifications: [
     {
+      badge: "assets/img/badges/security-specialty.png",
+      name: "AWS Certified Security – Specialty",
+      level: "Specialty",
+      issuer: "Amazon Web Services",
+      date: "Nov 2026",
+      summary: "Designing, implementing and troubleshooting security on AWS: identity, data protection, infrastructure security, logging, monitoring and incident response.",
+      credentialUrl: "https://www.credly.com/badges/35fedf1f-b2a4-4cd2-8960-5d44e9a4bc3a/public_url",
+    },
+    {
       badge: "assets/img/badges/genai-developer-pro.png",
       name: "AWS Certified Generative AI Developer – Professional",
       level: "Professional",
@@ -143,6 +161,7 @@ window.SITE = {
     {
       year: "2026",
       items: [
+        { name: "AWS Certified Security – Specialty", issuer: "AWS", url: "https://www.credly.com/badges/35fedf1f-b2a4-4cd2-8960-5d44e9a4bc3a/public_url" },
         { name: "AWS Certified Generative AI Developer – Professional", issuer: "AWS", url: "https://www.credly.com/badges/cbe89b1f-1959-47a1-8d14-7328c1ea882c/public_url" },
         { name: "AWS Certified AI Practitioner", issuer: "AWS", url: "https://www.credly.com/badges/e6b7559c-b459-4977-a026-9a0fc37f3fbf/public_url" },
         { name: "Joined the AWS Community Builders programme", issuer: "AWS" },
