@@ -12,6 +12,10 @@ All the text lives in **`assets/js/data.js`**. Edit that one file to add jobs, c
 - **CV:** add a PDF to `assets/` and set `resume` to show a "Download CV" button.
 - **Email:** set `email` to show an "Email me" button.
 
+## Publishing changes
+
+After editing `data.js`, `main.js` or `style.css`, bump the `?v=` number on their links in `index.html` (today's date works, e.g. `?v=20261116`). GitHub Pages lets browsers keep these files for 10 minutes, and without a new number returning visitors can see the new page with old content.
+
 ## Preview locally
 
 Open `index.html` in a browser, or run `python3 -m http.server` and visit http://localhost:8000.
