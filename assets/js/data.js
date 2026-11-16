@@ -13,7 +13,7 @@ window.SITE = {
   name: "Ifelolu David Oladimeji",
   shortName: "Ifelolu David",
   initials: "ID",
-  role: "Forward Deployed Engineer · AWS Solutions Architect",
+  role: "AI & Machine Learning Engineer · AWS Solutions Architect",
   tagline:
     "I architect secure, scalable AI and data platforms on AWS — and turn them into measurable business outcomes.",
   location: "Lagos, Nigeria · Open to global & remote roles",
@@ -37,7 +37,7 @@ window.SITE = {
   },
 
   about: [
-    "I'm a Forward Deployed Engineer and certified AWS Solutions Architect with a track record of designing secure, scalable, high-performance cloud and hybrid infrastructure. At Digitspot Solutions I first led the architecture of end-to-end AI and data analytics solutions, built and shipped AI and cloud systems as an AI & Machine Learning Engineer, and now work as a Forward Deployed Engineer, turning customer problems into production-ready platforms.",
+    "I'm an AI & Machine Learning Engineer and certified AWS Solutions Architect with a track record of designing secure, scalable, high-performance cloud and hybrid infrastructure. At Digitspot Solutions I first led the architecture of end-to-end AI and data analytics solutions, and I now build and ship AI and cloud systems that turn customer problems into production-ready platforms.",
     "My work spans the full stack of modern cloud: generative and agentic AI, event-driven and serverless design, ETL/ELT pipelines and data warehousing, and DevOps automation. I apply security-by-design throughout — least-privilege identity, network isolation, encryption, monitoring and logging — so that what I build is safe to scale.",
     "I'm a First Class Computer Science graduate of Redeemer's University (4.60/5.00) and have earned five AWS certifications in two years, including two at Professional level and the Security Specialty, building on a foundation in cybersecurity and data analytics that goes back to 2019. I'm an AWS Community Builder and a conference speaker, and I learn in public: every build becomes a write-up on Medium or a hands-on tutorial on my YouTube channel, Cloud with Dave, so the knowledge compounds for me and for the engineers who learn from it.",
   ],
@@ -52,23 +52,15 @@ window.SITE = {
   // ── Experience ─────────────────────────────────────────────
   experience: [
     {
-      role: "Forward Deployed Engineer",
-      company: "Digitspot Solutions Ltd",
-      period: "Nov 2026 — Present",
-      location: "Lagos, Nigeria",
-      points: [
-        "Work directly with customers to deploy, integrate and adapt AI and cloud solutions in their own environments.",
-      ],
-    },
-    {
       role: "AI & Machine Learning Engineer",
       company: "Digitspot Solutions Ltd",
-      period: "Jan 2026 — Nov 2026",
+      period: "Jan 2026 — Present",
       location: "Lagos, Nigeria",
       points: [
         "Design and build AI, machine learning and cloud solutions on AWS for customer use cases, from prototype to production.",
         "Designed and shipped a production order and delivery platform for a gas distribution business on ECS Fargate, fully defined in Terraform and deployed through GitHub Actions with OIDC (no long-lived AWS keys).",
         "Modernised a university's academic data layer from on-prem SQL Server and .NET Framework to Amazon RDS and .NET 8 on ECS Fargate, encrypted with KMS and accessed only through Secrets Manager.",
+        "Named a Forward Deployed Engineer in November 2026.",
       ],
     },
     {
